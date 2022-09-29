@@ -1,24 +1,28 @@
-import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "../components/EditScreenInfo";
+import React from "react";
+import { Button, StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<"TabOne">) {
+interface ProductsProps extends RootTabScreenProps<"TabTwo"> {}
+
+export const Products: React.FC<ProductsProps> = (props) => {
+  const { navigation } = props;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Uno</Text>
+      <Text style={styles.title}>Productos</Text>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <Button
+        title="Ver producto"
+        onPress={() => navigation.navigate("ProductDetail")}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
